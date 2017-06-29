@@ -108,9 +108,7 @@ router.get('/bookinstance/:id/update', book_instance_controller.bookinstance_upd
 // POST request to update BookInstance
 router.post('/bookinstance/:id/update', book_instance_controller.bookinstance_update_post);
 
-/* GET request for one BookInstan
-
-ce. */
+/* GET request for one BookInstance. */
 router.get('/bookinstance/:id', book_instance_controller.bookinstance_detail);
 
 /* GET request for list of all BookInstance. */
