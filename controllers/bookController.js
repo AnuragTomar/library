@@ -21,8 +21,6 @@ exports.index = function(req, res) {
             Author.count(callback);
         },
         genre_count: function(callback) {
-   
-
          Genre.count(callback);
         },
     }, function(err, results) {
@@ -31,41 +29,48 @@ exports.index = function(req, res) {
 };
 
 // Display list of all books
-exports.book_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Book list');
+exports.book_list = function(req, res, next) {
+
+Book.find({}, 'title author ')
+    .populate('author')
+    .exec(function (err, list_books) {
+      if (err) { return next(err); }
+      //Successful, so render
+      res.render('book_list', { title: 'Book List', book_list: list_books });
+    });   
 };
 
 // Display detail page for a specific book
 exports.book_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: Book detail: ' + req.params.id);
+    res.send('Book detail: ' + req.params.id);
 };
 
 // Display book create form on GET
 exports.book_create_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Book create GET');
+    res.send('');
 };
 
 // Handle book create on POST
 exports.book_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Book create POST');
+    res.send('');
 };
 
 // Display book delete form on GET
 exports.book_delete_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Book delete GET');
+    res.send('');
 };
 
 // Handle book delete on POST
 exports.book_delete_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Book delete POST');
+    res.send('');
 };
 
 // Display book update form on GET
 exports.book_update_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Book update GET');
+    res.send('');
 };
 
 // Handle book update on POST
 exports.book_update_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Book update POST');
+    res.send('');
 };
