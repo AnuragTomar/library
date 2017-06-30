@@ -5,6 +5,6 @@ block content
 	each author in author_list
 		li
 			a(href=author.url) #{author.name}
-			|(#{author.dob}-#{author.dod})
+			|(#{author.yob}-#{author.yod})
 	else 
 		li there is no author

@@ -27,15 +27,27 @@ AuthorSchema
 });
 
 AuthorSchema
-.virtual('dob')
+.virtual('yob')
 .get(function() {
   return this.date_of_birth ? moment(this.date_of_birth).format('YYYY') : '';
 });
 
 AuthorSchema
-.virtual('dod')
+.virtual('yod')
 .get(function() {
   return this.date_of_death ? moment(this.date_of_death).format('YYYY') : '';
+});
+
+AuthorSchema
+.virtual('dob')
+.get(function(){
+return this.date_of_birth ? moment(this.date_of_birth).format('MMMM Do, YYYY') : '';
+});
+
+AuthorSchema
+.virtual('dod')
+.get(function(){
+return this.date_of_death ? moment(this.date_of_death).format('MMMM Do, YYYY') : '';
 });
 
 //Export model
