@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var expressValidator= require('express-validator');
 var compression= require('compression');
-var helmet= requrie('helmet');
+var helmet= require('helmet');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
