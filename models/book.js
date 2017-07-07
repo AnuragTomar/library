@@ -9,7 +9,7 @@ var BookSchema = new Schema({
   isbn: {type: String, required: true},
   genre: [{type: Schema.ObjectId, ref: 'Genre'}],
   published_date: {type : Date},
-  total_pages : {type: Number}
+  total_pages : {type: Number},
   angie_meter : {type: Number}
 });
 
