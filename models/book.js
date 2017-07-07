@@ -8,7 +8,7 @@ var BookSchema = new Schema({
   summary: {type: String, required: true},
   isbn: {type: String, required: true},
   genre: [{type: Schema.ObjectId, ref: 'Genre'}],
-  published_date: {type : Date},
+  published_date: {type : Date, default: Date.now},
   total_pages : {type: Number},
   angie_meter : {type: Number}
 });
@@ -21,7 +21,7 @@ BookSchema
 });
 
 BookSchema
-.virtual('published_date')
+.virtual('publish_date')
 .get(function () {
   return moment(this.published_date).format('MMMM Do, YYYY');
 });
