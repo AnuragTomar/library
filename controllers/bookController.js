@@ -42,16 +42,16 @@ async.parallel({
 			.populate('genre')
 			.exec(callback);
 	},
-	book_instance:function(callback){
-		BookInstance.find({'book':req.params.id})
-			.exec(callback);
-	},
+//	book_instance:function(callback){
+//		BookInstance.find({'book':req.params.id})
+//			.exec(callback);
+//	},
 	},function(err, results){
 		if(err)
 		{
 			return next(err);
 		}
-	res.render('book_details',{title: 'Title',book:results.book,book_instances:results.book_instance});
+	res.render('book_details',{title: 'Title',book:results.book/*,book_instances:results.book_instance*/});
 });
 };
 
