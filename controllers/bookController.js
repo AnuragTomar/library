@@ -1,6 +1,7 @@
 var Book = require('../models/book');
 var Author = require('../models/author');
 var Genre = require('../models/genre');
+var Comment=require('../models/comment');
 
 var async = require('async');
 
