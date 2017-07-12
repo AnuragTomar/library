@@ -12,7 +12,7 @@ block content
 		each comment in comments
 			p
 				a(href=comment.user_name.url) #{comment.user_name.name}
-			p #{comment.fav_part}
+			p #[strong #[i "#{comment.fav_part}"]]
 			p #{comment.description}
 			p #{comment.page_number}
 			p #{comment.published_date}
