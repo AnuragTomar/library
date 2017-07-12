@@ -89,6 +89,8 @@ router.get('/genre/:id', genre_controller.genre_detail);
 router.get('/genres', genre_controller.genre_list);
 
 /*users*/
-//router.get('/user/:id',user_controller.user_detail);
+router.get('/users',user_controller.user_list);
+
+router.get('/user/:id',user_controller.user_detail);
 
 module.exports = router;

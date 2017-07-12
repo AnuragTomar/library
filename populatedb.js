@@ -90,7 +90,7 @@ function commentCreate(user_name, book, page_number, fav_part, description, publ
     published_date:published_date
   }
   if(fav_part!=false) commentdetail.fav_part=fav_part
-  if(description!=false) commentdetail.decription=description
+  if(description!=false) commentdetail.description=description
 
   var comment=new Comment(commentdetail);
   comment.save(function(err){

@@ -14,9 +14,9 @@ var UserSchema= new Schema({
 });
 
 UserSchema
-.virtual('id')
+.virtual('url')
 .get(function(){
-return 'catalog/user/' + this.id;
+return '/catalog/user/' + this._id;
 });
 
 UserSchema
