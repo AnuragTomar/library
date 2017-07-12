@@ -8,29 +8,12 @@ block content
 	p #[strong Genre:]&nbsp;
 		each val in book.genre
 			a(href=val.url) #{val.name}
-				|, 
-	div(style='margin-left:20px;margin-top:20px')
-		h4 Copies
-		each val in book_instances
-			hr
-			if val.status=='Available'
-				p.text-success #{val.status}
-			else if val.status=='Maintenance'
-				p.text-danger #{val.status}
-			else
-				p.text-warning #{val.status} 
-				p #[strong Imprint:] #{val.imprint}
-			if val.status!='Available'
-				p #[strong Due back:] #{val.due_back}
-				p #[strong Id:]&nbsp;
-				a(href=val.url) #{val._id}
-		else
-			p There are no copies of this book in the library.
-	p
-		a(href=book.url+'/delete') Delete Book
-	p
-		a(href=book.url+'/update') Update Book
-	hr
-	p user name
-	p fav quotes         
+	p #[strong Comments:]
+		each comment in comments
+			p
+				a(href=comment.user_name.url) #{comment.user_name.name}
+			p #{comment.fav_part}
+			p #{comment.description}
+			p #{comment.page_number}
+			p #{comment.published_date}
 
