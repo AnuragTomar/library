@@ -1,8 +1,8 @@
 var Book = require('../models/book');
 var Author = require('../models/author');
 var Genre = require('../models/genre');
-var BookInstance = require('../models/bookinstance');
-
+var Comment=require('../models/comment');
+var User=require('../models/user');
 var async = require('async');
 
 exports.index = function(req, res) {   
@@ -11,17 +11,17 @@ exports.index = function(req, res) {
         book_count: function(callback) {
             Book.count(callback);
         },
-        book_instance_count: function(callback) {
-            BookInstance.count(callback);
-        },
-        book_instance_available_count: function(callback) {
-            BookInstance.count({status:'Available'}, callback);
-        },
         author_count: function(callback) {
             Author.count(callback);
         },
         genre_count: function(callback) {
          Genre.count(callback);
+        },
+        user_count: function(callback) {
+         User.count(callback);
+        },
+        comment_count: function(callback){
+         Comment.count(callback);
         },
     }, function(err, results) {
         res.render('index', { title: 'Local Library Home', error: err, data: results });
@@ -49,16 +49,16 @@ async.parallel({
 			.populate('genre')
 			.exec(callback);
 	},
-	book_instance:function(callback){
-		BookInstance.find({'book':req.params.id})
-			.exec(callback);
-	},
+//	book_instance:function(callback){
+//		BookInstance.find({'book':req.params.id})
+//			.exec(callback);
+//	},
 	},function(err, results){
 		if(err)
 		{
 			return next(err);
 		}
-	res.render('book_details',{title: 'Title',book:results.book,book_instances:results.book_instance});
+	res.render('book_details',{title: 'Title',book:results.book/*,book_instances:results.book_instance*/});
 });
 };
 

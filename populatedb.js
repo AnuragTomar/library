@@ -13,8 +13,8 @@ var async = require('async')
 var Book = require('./models/book')
 var Author = require('./models/author')
 var Genre = require('./models/genre')
-var BookInstance = require('./models/bookinstance')
-
+var User= require('./models/user')
+var Comment=require('./models/comment')
 
 var mongoose = require('mongoose');
 var mongoDB = userArgs[0];
@@ -25,7 +25,8 @@ mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection 
 var authors = []
 var genres = []
 var books = []
-var bookinstances = []
+var users = []
+var comments =[]
 
 function authorCreate(first_name, family_name, d_birth, d_death, cb) {
   authordetail = {first_name:first_name , family_name: family_name }
@@ -81,26 +82,51 @@ function bookCreate(title, summary, isbn, author, genre, cb) {
 }
 
 
-function bookInstanceCreate(book, imprint, due_back, status, cb) {
-  bookinstancedetail = { 
-    book: book,
-    imprint: imprint
-  }    
-  if (due_back != false) bookinstancedetail.due_back = due_back
-  if (status != false) bookinstancedetail.status = status
-    
-  var bookinstance = new BookInstance(bookinstancedetail);    
-  bookinstance.save(function (err) {
-    if (err) {
-      console.log('ERROR CREATING BookInstance: ' + bookinstance);
-      cb(err, null)
-      return
+function commentCreate(user_name, book, page_number, fav_part, description, published_date, cb){
+  commentdetail={
+    user_name:user_name,
+    book:book,
+    page_number:page_number,
+    published_date:published_date
+  }
+  if(fav_part!=false) commentdetail.fav_part=fav_part
+  if(description!=false) commentdetail.decription=description
+
+  var comment=new Comment(commentdetail);
+  comment.save(function(err){
+    if(err){
+       cb(err,null)
+       return
     }
-    console.log('New BookInstance: ' + bookinstance);
-    bookinstances.push(bookinstance)
-    cb(null, book)
+    console.log('New Comment: '+ comment);
+    comments.push(comment)
+    cb(null,comment)
   }  );
 }
+
+function userCreate(firstname,lastname,user_name,password,email,preferred_genres,fav_authors,fav_books,cb){
+  userdetail={
+    firstname:firstname,
+    lastname:lastname,
+    user_name:user_name,
+    password:password,
+    email:email,
+  }
+  if(preferred_genres!=false) userdetail.preferred_genres=preferred_genres
+  if(fav_authors!=false) userdetail.fav_authors=fav_authors
+  if(fav_books!=false) userdetail.fav_books=fav_books
+
+  var user=new User(userdetail);
+  user.save(function(err){
+    if(err){
+      cb(err,null)
+      return
+    }
+    console.log('New User: '+ user);
+    users.push(user)
+    cb(null,user)
+  }  );
+} 
 
 
 function createGenreAuthors(cb) {
@@ -134,6 +160,35 @@ function createGenreAuthors(cb) {
         cb);
 }
 
+function createUsers(cb){
+    async.parallel([
+        function(callback){
+               userCreate('Anu','Tomar','anurag','8237715234','anurag@gmail.com',[genres[0],],[authors[0],],[books[0],],callback);
+        },        
+        function(callback){
+               userCreate('Anurag','Tom','tomar','9237715233','tomar@gmail.com',[genres[1],],[authors[1],],[books[1],],callback);
+        },
+        function(callback){
+               userCreate('Anurag','Tomar','anuragtomar','8237715233','anuragtomar@gmail.com',[genres[0],genres[1],],[authors[0],authors[1],],[books[0],books[1],],callback);
+        },
+     ],
+     cb);
+}
+
+function createComments(cb){
+    async.parallel([
+           function(callback){
+                    commentCreate(users[0],books[0],20,'her smile could end wars and cure cancer',' how beautifully author explains beauty of the smile of his crush','2017-07-12',callback);
+           },
+           function(callback){
+                    commentCreate(users[1],books[0],30,'a bullet is forever','bob lee swagger from shooter tv series recalls his friend  saying a bullet is forever','2017-06-12',callback);
+           },
+           function(callback){
+                    commentCreate(users[1],books[1],100,'it is amazing how our mind connects one thought to another until it reaches where it want to go','chetan bhagat in his novel explains a very deep fact','2017-06-1',callback);
+           },
+           ],
+           cb);
+}
 
 function createBooks(cb) {
     async.parallel([
@@ -163,53 +218,11 @@ function createBooks(cb) {
         cb);
 }
 
-
-function createBookInstances(cb) {
-    async.parallel([
-        function(callback) {
-          bookInstanceCreate(books[0], 'London Gollancz, 2014.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[1], ' Gollancz, 2011.', false, 'Loaned', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[2], ' Gollancz, 2015.', false, false, callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Maintenance', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Loaned', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[0], 'Imprint XXX2', false, false, callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[1], 'Imprint XXX3', false, false, callback)
-        }
-        ],
-        // optional callback
-        cb);
-}
-
-
-
 async.series([
     createGenreAuthors,
     createBooks,
-    createBookInstances
+    createUsers,
+    createComments,
 ],
 // optional callback
 function(err, results) {
@@ -217,8 +230,7 @@ function(err, results) {
         console.log('FINAL ERR: '+err);
     }
     else {
-        console.log('BOOKInstances: '+bookinstances);
-        
+        console.log('Database ready');
     }
     //All done, disconnect from database
     mongoose.connection.close();
