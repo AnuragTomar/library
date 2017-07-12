@@ -1,0 +1,16 @@
+extends layout
+block content
+  h1= title
+  b FirstName: #{user.firstname}
+  p LastName: #{user.lastname }
+  p Email: #{user.email}
+  p UserName: #{user.user_name}
+  each author in user.fav_authors
+    a(href=author.url) #{author.name} | 
+  hr
+  each book in user.fav_books
+    a(href=book.url) #{book.title} | 
+  hr
+  each genre in user.preferred_genres
+    a(href=genre.url) #{genre.name} | 
+
