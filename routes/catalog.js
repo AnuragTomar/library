@@ -6,6 +6,7 @@ var book_controller = require('../controllers/bookController');
 var author_controller = require('../controllers/authorController');
 var genre_controller = require('../controllers/genreController');
 var comment_controller=require('../controllers/commentController');
+var user_controller=require('../controllers/userController');
 /// BOOK ROUTES ///
 
 /* GET catalog home page. */
@@ -86,5 +87,8 @@ router.get('/genre/:id', genre_controller.genre_detail);
 
 /* GET request for list of all Genre. */
 router.get('/genres', genre_controller.genre_list);
+
+/*users*/
+//router.get('/user/:id',user_controller.user_detail);
 
 module.exports = router;

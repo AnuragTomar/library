@@ -81,6 +81,7 @@ function bookCreate(title, summary, isbn, author, genre, cb) {
   }  );
 }
 
+
 function commentCreate(user_name, book, page_number, fav_part, description, published_date, cb){
   commentdetail={
     user_name:user_name,
@@ -116,7 +117,7 @@ function userCreate(firstname,lastname,user_name,password,email,preferred_genres
   if(fav_books!=false) userdetail.fav_books=fav_books
 
   var user=new User(userdetail);
-  user.save(function(err)
+  user.save(function(err){
     if(err){
       cb(err,null)
       return
@@ -162,8 +163,33 @@ function createGenreAuthors(cb) {
 function createUsers(cb){
     async.parallel([
         function(callback){
-               userCreate('Anurag','Tomar','anuragtomar','8237715233','anurag@gmail.com',[genres[0],genres[1],],[authors[0],authors[1],],[books[0],books[1],],callback);
-        }
+               userCreate('Anu','Tomar','anurag','8237715234','anurag@gmail.com',[genres[0],],[authors[0],],[books[0],],callback);
+        },        
+        function(callback){
+               userCreate('Anurag','Tom','tomar','9237715233','tomar@gmail.com',[genres[1],],[authors[1],],[books[1],],callback);
+        },
+        function(callback){
+               userCreate('Anurag','Tomar','anuragtomar','8237715233','anuragtomar@gmail.com',[genres[0],genres[1],],[authors[0],authors[1],],[books[0],books[1],],callback);
+        },
+     ],
+     cb);
+}
+
+function createComments(cb){
+    async.parallel([
+           function(callback){
+                    commentCreate(users[0],books[0],20,'her smile could end wars and cure cancer',' how beautifully author explains beauty of the smile of his crush','2017-07-12',callback);
+           },
+           function(callback){
+                    commentCreate(users[1],books[0],30,'a bullet is forever','bob lee swagger from shooter tv series recalls his friend  saying a bullet is forever','2017-06-12',callback);
+           },
+           function(callback){
+                    commentCreate(users[1],books[1],100,'it is amazing how our mind connects one thought to another until it reaches where it want to go','chetan bhagat in his novel explains a very deep fact','2017-06-1',callback);
+           },
+           ],
+           cb);
+}
+
 function createBooks(cb) {
     async.parallel([
         function(callback) {
@@ -195,6 +221,8 @@ function createBooks(cb) {
 async.series([
     createGenreAuthors,
     createBooks,
+    createUsers,
+    createComments,
 ],
 // optional callback
 function(err, results) {
@@ -202,8 +230,7 @@ function(err, results) {
         console.log('FINAL ERR: '+err);
     }
     else {
-        console.log('BOOKInstances: '+bookinstances);
-        
+        console.log('Database ready');
     }
     //All done, disconnect from database
     mongoose.connection.close();
