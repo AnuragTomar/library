@@ -40,6 +40,22 @@ async.parallel({
 		
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 // Display Genre create form on GET
 exports.genre_create_get = function(req, res, next) {
     res.render('genre_form', { title: 'Create Genre' });
@@ -92,7 +108,9 @@ exports.genre_create_post = function(req, res, next) {
              });
     }
 };
+*/
 
+/*
 // Display Genre delete form on GET
 exports.genre_delete_get = function(req, res) {
     res.send('NOT IMPLEMENTED: Genre delete GET');
@@ -102,7 +120,9 @@ exports.genre_delete_get = function(req, res) {
 exports.genre_delete_post = function(req, res) {
     res.send('NOT IMPLEMENTED: Genre delete POST');
 };
+*/
 
+/*
 // Display Genre update form on GET
 exports.genre_update_get = function(req, res) {
     res.send('NOT IMPLEMENTED: Genre update GET');
@@ -112,3 +132,4 @@ exports.genre_update_get = function(req, res) {
 exports.genre_update_post = function(req, res) {
     res.send('NOT IMPLEMENTED: Genre update POST');
 };
+*/

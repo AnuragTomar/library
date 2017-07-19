@@ -35,6 +35,17 @@ async.parallel({
 });
 };
 
+
+
+
+
+
+
+
+
+
+
+/*
 // Display Author create form on GET
 exports.author_create_get = function(req, res, next) {
     res.render('author_form', { title: 'Create Author'});
@@ -79,7 +90,9 @@ exports.author_create_post = function(req, res, next) {
     }
 
 };
+*/
 
+/*
 // Display Author delete form on GET
 exports.author_delete_get = function(req, res, next) {
     async.parallel({
@@ -128,7 +141,9 @@ exports.author_delete_post = function(req, res, next) {
     });
 
 };
+*/
 
+/*
 // Display Author update form on GET
 exports.author_update_get = function(req, res) {
     res.send('NOT IMPLEMENTED: Author update GET');
@@ -138,3 +153,4 @@ exports.author_update_get = function(req, res) {
 exports.author_update_post = function(req, res) {
     res.send('NOT IMPLEMENTED: Author update POST');
 };
+*/

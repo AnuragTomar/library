@@ -63,6 +63,27 @@ async.parallel({
 });
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 // Display book create form on GET
 exports.book_create_get = function(req, res, next) {
     async.parallel({
@@ -146,7 +167,9 @@ exports.book_create_post = function(req, res) {
     }
 
 };
+*/
 
+/*
 // Display book delete form on GET
 exports.book_delete_get = function(req, res) {
     res.send('');
@@ -156,7 +179,9 @@ exports.book_delete_get = function(req, res) {
 exports.book_delete_post = function(req, res) {
     res.send('');
 };
+*/
 
+/*
 // Display book update form on GET
 exports.book_update_get = function(req, res, next) {
     req.sanitize('id').escape();
@@ -190,7 +215,9 @@ exports.book_update_get = function(req, res, next) {
     });
     
 };
+*/
 
+/*
 // Handle book update on POST
 exports.book_update_post = function(req, res, next) {
     //Sanitize id passed in. 
@@ -257,4 +284,4 @@ exports.book_update_post = function(req, res, next) {
         });
     }
 
-};
+};*/
