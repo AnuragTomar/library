@@ -8,6 +8,10 @@ var mongoose = require('mongoose');
 var expressValidator= require('express-validator');
 var compression= require('compression');
 var helmet= require('helmet');
+var passport=require('passport');
+var localStrategy=require('passport-local').Strategy;
+var expressSession= require('express-session');
+var flash=require('connect-flash');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -32,10 +36,13 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(expressValidator());//add after body parser middle ware or it won't work -_-
+app.use(expressValidator());//add after body parser middleware or it won't work -_-
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(expressSession({secret:'mysecretkey',resave:false,saveUninitialized:false}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 app.use('/', index);
 app.use('/users', users);
 app.use('/catalog', catalog);  // Add catalog routes to middleware chain.
