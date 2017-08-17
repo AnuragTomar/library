@@ -1,4 +1,3 @@
-import { FormModule } from '@angular/forms';
 import { Component }  from '@angular/core';
 
 @Component({
