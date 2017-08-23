@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "Library"
+    "name": "angular2-full-stack"
   },
   "apps": [
     {
       "root": "client",
-      "outDir": "dist",
+      "outDir": "dist/public",
       "assets": [
         "assets",
         "assets/favicon.ico"
@@ -23,7 +23,7 @@
         "../node_modules/font-awesome/css/font-awesome.min.css",
         "styles.scss"
       ],
-      "scripts":[
+      "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/tether/dist/js/tether.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js"
@@ -64,5 +64,3 @@
     "component": {}
   }
 }
-
-

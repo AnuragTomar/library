@@ -1,19 +1,3 @@
-import { CPage } from './app.po';
-
-describe('c App', () => {
-  let page: CPage;
-
-  beforeEach(() => {
-    page = new CPage();
-  });
-
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
-  });
-});
-
-/**
 import { Angular2FullStackPage } from './app.po';
 
 describe('angular2-full-stack App', () => {
@@ -31,4 +15,3 @@ describe('angular2-full-stack App', () => {
     expect(page.getNavbarElement(3)).toEqual('Register');
   });
 });
-*/
