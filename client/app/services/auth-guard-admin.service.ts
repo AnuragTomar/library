@@ -10,4 +10,5 @@ export class AuthGuardAdmin implements CanActivate {
   canActivate() {
     return this.auth.isAdmin;
   }
+  //isAdmin is variable in auth.service.ts which tells wheteher particular user is admin or not(true/false)
 }

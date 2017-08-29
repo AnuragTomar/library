@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
                                   Validators.minLength(6)]);
 
   role = new FormControl('', [Validators.required]);
+  //creating formcontrol with requirements.
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -41,6 +42,8 @@ export class RegisterComponent implements OnInit {
   setClassUsername() {
     return { 'has-danger': !this.username.pristine && !this.username.valid };
   }
+  /*we specified rules to username, password,email,role while creating formControl above, if the user entered info doesn't satisfy the rules, form field shows error(red color using has-danger). prestine is for if the textbox's value is changed or not. valid checks validators.*/
+
   setClassEmail() {
     return { 'has-danger': !this.email.pristine && !this.email.valid };
   }

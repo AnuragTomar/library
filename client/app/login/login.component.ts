@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
   setClassEmail() {
     return { 'has-danger': !this.email.pristine && !this.email.valid };
   }
+  //When you change the field, it automatically change model.prisitne to true. 
+  
   setClassPassword() {
     return { 'has-danger': !this.password.pristine && !this.password.valid };
   }

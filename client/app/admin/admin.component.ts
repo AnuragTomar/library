@@ -12,11 +12,14 @@ import { UserService } from '../services/user.service';
 export class AdminComponent implements OnInit {
 
   users = [];
+  //is used in template after being initialized in ngOnInit.
   isLoading = true;
-
+  //is true by default and when the getUsers, complete callback retursns error or result it's set to false.
+  
   constructor(public auth: AuthService,
               public toast: ToastComponent,
               private userService: UserService) { }
+//we are using toast and auth object in template file and in deleteUser().
 
   ngOnInit() {
     this.getUsers();
@@ -30,7 +33,7 @@ export class AdminComponent implements OnInit {
       () => this.isLoading = false
     );
   }
-  /*this getUsers() calls and execute getUsers Observable present in user.service file.subscribe is what executes the observable, it takes 3 callback parameters(success, failure, completete) which are data, error, () in above method.in success callback we assign result to some variable, error cb is for error, complete callback is called after success or failure callback.
+  /*this getUsers() calls and execute getUsers Observable present in user.service file.subscribe is what executes the observable, it takes 3 callback parameters(success, failure, completete) which are data, error, () in above method. in success callback we assign result to some variable, error cb is for error, complete callback is called after success or failure callback.
   forEach(),toArray() can be used to execute observable but they can't be used to cancel the subscription for that we only need subscribe(). 
   Map returns observable which can be subsribed to, subscribe returns unsubcribable observable.Map will be usefull if we want to manipulate data events and return subscribable observable which can be used by any other code.*/
 
@@ -41,5 +44,6 @@ export class AdminComponent implements OnInit {
       () => this.getUsers()
     );
   }
+      /*toast.setMessage sets the provided message into the message object using setMessage() method of toast class.i.e., message.body="user deleted successfully" and message.type="success" */
 
 }

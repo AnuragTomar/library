@@ -40,6 +40,8 @@ export class UserService {
   editUser(user): Observable<any> {
     return this.http.put(`/api/user/${user._id}`, JSON.stringify(user), this.options);
   }
+  /*editUser() recieves user object from save method of account.component.ts and then sends userid as (user._id) to node server along with user object in json string(stringify).
+  we used put so server will be able to identify which route to choose.server return status 200 or error,  whatever will be the result is then sent to save method (return this.http.....).*/ 
 
   deleteUser(user): Observable<any> {
     return this.http.delete(`/api/user/${user._id}`, this.options);

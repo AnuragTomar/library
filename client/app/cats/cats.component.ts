@@ -92,5 +92,6 @@ export class CatsComponent implements OnInit {
       );
     }
   }
-
+//uses 2 callbacks res and error.
+/*DeleteCat() subscribes to deleteCat observable to remove element from mongodb and it also removes the specified element from screen by finding its position in cats[] array. to find the position of element in cats[] array, we use map function which compares the elem._id with with everycat._id and then returns the index of matched element.which se then removed using splice method of array*/
 }

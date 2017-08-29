@@ -34,5 +34,8 @@ export class AccountComponent implements OnInit {
       res => this.toast.setMessage('account settings saved!', 'success'),
       error => console.log(error)
     );
+
   }
+  
+  /*this method is connected to ngSubmit. ngSubmit event is emitted when user submit the form. it stops the normal operation of submit button and lets user do validation. so when user submits the form the control is transferred to save function (written above) which subscribes to edituser observable in userService and depending on the callback recieved shows the response.*/
 }

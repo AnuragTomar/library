@@ -12,7 +12,7 @@ export class AuthService {
   jwtHelper: JwtHelper = new JwtHelper();
 
   currentUser = { _id: '', username: '', role: '' };
-
+  
   constructor(private userService: UserService,
               private router: Router) {
     const token = localStorage.getItem('token');
@@ -21,6 +21,8 @@ export class AuthService {
       this.setCurrentUser(decodedUser);
     }
   }
+  //get the token previously stored from local storage, decode token and initialize currentUser with it
+
 
   login(emailAndPassword) {
     return this.userService.login(emailAndPassword).map(res => res.json()).map(
