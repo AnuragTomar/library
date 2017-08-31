@@ -39,10 +39,10 @@ export default function setRoutes(app) {
   //Book
   router.route('/books').get(bookCtrl.getAll);
   router.route('/books/count').get(bookCtrl.count);
-  router.route('/books').post(bookCtrl.insert);
-  router.route('/books/:id').get(bookCtrl.get);
-  router.route('/books/:id').put(bookCtrl.update);
-  router.route('/books/:id').delete(bookCtrl.delete);
+  router.route('/book').post(bookCtrl.insert);
+  router.route('/book/:id').get(bookCtrl.get);
+  router.route('/book/:id').put(bookCtrl.update);
+  router.route('/book/:id').delete(bookCtrl.delete);
 
   //Author
   router.route('/authors').get(authorCtrl.getAll);

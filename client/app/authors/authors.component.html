@@ -21,8 +21,8 @@
       <tbody *ngIf="!isEditing">
         <tr *ngFor="let author of authors">
           <td>{{author.name}}</td>
-          <td>{{auhtor.about}}</td>
-          <td>{{auhtor.bestseller}}</td>
+          <td>{{author.about}}</td>
+          <td>{{author.bestseller}}</td>
           <td>
             <button class="btn btn-sm btn-warning" (click)="enableEditing(author)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteAuthor(author)"><i class="fa fa-trash"></i> Delete</button>
           </td>
