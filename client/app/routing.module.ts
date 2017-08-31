@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CatsComponent } from './cats/cats.component';
+import { AuthorsComponent } from './authors/authors.component';
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -18,6 +19,7 @@ import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 const routes: Routes = [
   { path: '', component: AboutComponent },
   { path: 'cats', component: CatsComponent },
+  { path: 'authors', component: AuthorsComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
