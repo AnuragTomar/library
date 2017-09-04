@@ -1,0 +1,61 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">Current Comments ({{comments.length}})</h4>
+  <div class="card-block">
+         <div *ngIf="comments.length === 0">
+          There are no comment in the DB. Add a new comment below.
+         </div>
+          
+  </div>
+
+<div class="card" *ngIf="!isEditing">
+  <h4 class="card-header">Add new comment</h4>
+  <div class="card-block">
+    <form class="form-inline" [formGroup]="addCommentForm" (ngSubmit)="addComment()" style="text-align:center">
+      <div class="form-group">
+          <input class="form-control" type="text" name="name" formControlName="user" placeholder="Name">
+      </div>
+      <div class="form-group">
+          <input class="form-control" type="text" name="summary" formControlName="description" placeholder="Summary">
+      </div>
+      <div class="form-group">
+          <input class="form-control" type="text" name="author" formControlName="fav_part" placeholder="Author">
+      </div>
+      <div class="form-group">
+          <input class="form-control" type="text" name="genre" formControlName="comment_date" placeholder="Genre">
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="!addCommentForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+    </form>
+  </div>
+</div>
+<ul *ngIf="!isEditing">
+        <li *ngFor="let comment of comments">
+          {{comment.user.name}}
+          {{comment.description}}
+          {{comment.fav_part}}
+          {{comment.comment_date}}
+
+            <button class="btn btn-sm btn-warning" (click)="enableEditing(comment)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteComment(comment)"><i class="fa fa-trash"></i> Delete</button>
+          </li>
+        </ul>
+          </div>
+        <div *ngIf="isEditing">
+            <form class="form-inline" #form="ngForm" (ngSubmit)="editComment(comment)" style="display:inline">
+              <div class="form-group">
+                  <input class="form-control" type="text" name="name" [(ngModel)]="comment.user.name" placeholder="Name" required>
+              </div>
+              <div class="form-group">
+                  <input class="form-control" type="text" name="summary" [(ngModel)]="comment.description" placeholder="Summary" required>
+              </div>
+              <div class="form-group">
+                  <input class="form-control" type="text" name="author" [(ngModel)]="comment.fav_part" placeholder="Author" required>
+              </div>
+              <div class="form-group">
+                  <input class="form-control" type="text" name="genre" [(ngModel)]="comment.comment_date" placeholder="genre" required>
+              </div>              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+            </form>
+            <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+          </div>

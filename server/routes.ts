@@ -4,12 +4,13 @@ import CatCtrl from './controllers/cat';
 import UserCtrl from './controllers/user';
 import BookCtrl from './controllers/book';
 import AuthorCtrl from './controllers/author';
+import CommentCtrl from './controllers/comment';
 
 import Cat from './models/cat';
 import User from './models/user';
 import Book from './models/book';
 import Author from './models/author';
-
+import Comment from './models/comment';
 export default function setRoutes(app) {
 
   const router = express.Router();
@@ -18,7 +19,8 @@ export default function setRoutes(app) {
   const userCtrl = new UserCtrl();
   const bookCtrl = new BookCtrl();
   const authorCtrl = new AuthorCtrl();
-  
+  const commentCtrl = new CommentCtrl();
+
   // Cats
   router.route('/cats').get(catCtrl.getAll);
   router.route('/cats/count').get(catCtrl.count);
@@ -49,9 +51,16 @@ export default function setRoutes(app) {
   router.route('/authors/count').get(authorCtrl.count);
   router.route('/author').post(authorCtrl.insert);
   router.route('/author/:id').get(authorCtrl.get);
-  router.route('/auhtor/:id').put(authorCtrl.update);
+  router.route('/author/:id').put(authorCtrl.update);
   router.route('/author/:id').delete(authorCtrl.delete);
 
+  //Comment
+  router.route('/comments').get(commentCtrl.getAll);
+  router.route('/comments/count').get(commentCtrl.count);
+  router.route('/comment').post(commentCtrl.insert);
+  router.route('/comment/:id').get(commentCtrl.get);
+  router.route('/comment/:id').put(commentCtrl.update);
+  router.route('/comment/:id').delete(commentCtrl.delete);
   
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);

@@ -6,11 +6,13 @@ import { CatService } from './services/cat.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { AuthorService } from './services/author.service';
+import { CommentService } from './services/comment.service';
 import { BookService } from './services/book.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 import { AppComponent } from './app.component';
 import { AuthorsComponent } from './authors/authors.component';
+import { CommentsComponent } from './comments/comments.component';
 import { BooksComponent } from './books/books.component';
 import { CatsComponent } from './cats/cats.component';
 import { AboutComponent } from './about/about.component';
@@ -32,6 +34,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AccountComponent,
     AuthorsComponent,
     BooksComponent,
+    CommentsComponent,
     AdminComponent,
     NotFoundComponent
   ],
@@ -43,6 +46,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AuthService,
     AuthorService,
     BookService,
+    CommentService,
     AuthGuardLogin,
     AuthGuardAdmin,
     CatService,
